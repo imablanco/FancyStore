@@ -3,6 +3,7 @@
     package="com.ablanco.fancystore">
 
     <application
+        android:name=".FancyStoreApp"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
