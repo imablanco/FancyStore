@@ -1,18 +1,18 @@
 package com.ablanco.fancystore.presentation
 
-/**
- * Created by Álvaro Blanco Cabrero on 03/09/2020.
- * FancyStore.
- */
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ablanco.fancystore.domain.base.CoroutinesDispatchers
-import com.ablanco.fancystore.domain.base.DomainError
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+
+/**
+ * Created by Álvaro Blanco Cabrero on 03/09/2020.
+ * FancyStore.
+ */
 
 /**
  * Represents persistent state of the View
@@ -38,7 +38,7 @@ typealias Reducer<T> = T.() -> T
  *
  * [ViewAction] dispatching must be done through [BaseViewModel.dispatchAction].
  *
- * [DomainError] dispatching must be done through [BaseViewModel.dispatchError].
+ * [PresentationError] dispatching must be done through [BaseViewModel.dispatchError].
  *
  * [Intent] send must be done through [BaseViewModel.sendIntent].
  */
@@ -50,11 +50,11 @@ abstract class BaseViewModel<V : ViewState, A : ViewAction, I : Intent>(
 
     private val _viewState: MutableLiveData<V> by lazy { MutableLiveData(initialViewState) }
     private val _viewActions: LiveEvent<A> = LiveEvent()
-    private val _viewErrors: LiveEvent<DomainError> = LiveEvent()
+    private val _viewErrors: LiveEvent<PresentationError> = LiveEvent()
 
     val viewState: LiveData<V> by lazy { _viewState }
     val viewActions: LiveData<A> by lazy { _viewActions }
-    val viewErrors: LiveData<DomainError> by lazy { _viewErrors }
+    val viewErrors: LiveData<PresentationError> by lazy { _viewErrors }
 
     abstract fun load()
 
@@ -87,9 +87,9 @@ abstract class BaseViewModel<V : ViewState, A : ViewAction, I : Intent>(
     }
 
     /**
-     * Dispatches the given [DomainError] to [viewErrors] observers
+     * Dispatches the given [PresentationError] to [viewErrors] observers
      */
-    protected fun dispatchError(error: DomainError) {
+    protected fun dispatchError(error: PresentationError) {
         _viewErrors.value = error
     }
 

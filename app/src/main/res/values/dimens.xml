@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Common-->
+    <dimen name="spacingNormal">16dp</dimen>
+    <dimen name="spacingMini">8dp</dimen>
+    <dimen name="cornerRadiusNormal">8dp</dimen>
+    <dimen name="elevationNormal">2dp</dimen>
+    <dimen name="clickableIconSize">48dp</dimen>
+    <dimen name="clickableIconPadding">12dp</dimen>
+
+    <!--Features-->
+    <dimen name="productImageHeight">120dp</dimen>
+
+</resources>
