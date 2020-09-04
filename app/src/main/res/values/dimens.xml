@@ -11,5 +11,6 @@
 
     <!--Features-->
     <dimen name="productImageHeight">120dp</dimen>
+    <dimen name="productPromotionBadgeSize">80dp</dimen>
 
 </resources>

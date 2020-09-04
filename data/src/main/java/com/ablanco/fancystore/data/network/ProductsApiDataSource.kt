@@ -1,8 +1,10 @@
 package com.ablanco.fancystore.data.network
 
+import com.ablanco.fancystore.data.models.DiscountData
 import com.ablanco.fancystore.data.models.ProductListData
 import com.ablanco.fancystore.data.models.toDomain
 import com.ablanco.fancystore.domain.base.Either
+import com.ablanco.fancystore.domain.models.Discount
 import com.ablanco.fancystore.domain.models.Product
 
 /**
@@ -15,4 +17,7 @@ class ProductsApiDataSource(
 
     suspend fun getProducts(): Either<List<Product>> =
         productsService.getProducts().map(ProductListData::toDomain)
+
+    suspend fun getProductDiscounts(): Either<List<Discount>> =
+        productsService.getProductDiscounts().map { it.map(DiscountData::toDomain) }
 }

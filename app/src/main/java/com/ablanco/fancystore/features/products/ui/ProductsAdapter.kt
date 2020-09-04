@@ -6,8 +6,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.ablanco.fancystore.base.ui.DefaultItemCallback
 import com.ablanco.fancystore.base.ui.ViewBindingViewHolder
+import com.ablanco.fancystore.base.ui.switchVisibility
 import com.ablanco.fancystore.databinding.ItemProductBinding
 import com.ablanco.fancystore.features.products.presentation.ProductVM
+import com.ablanco.fancystore.features.products.presentation.hasDiscount
 
 /**
  * Created by Álvaro Blanco Cabrero on 04/09/2020.
@@ -49,6 +51,8 @@ class ProductsAdapter(
                 ivProductIcon.setImageResource(product.iconResId)
                 tvProductName.text = product.name
                 tvProductPrice.text = product.price
+                layoutDiscount.switchVisibility(product.hasDiscount)
+                tvDiscountShortDesc.text = product.discount?.displayName
             }
         }
     }

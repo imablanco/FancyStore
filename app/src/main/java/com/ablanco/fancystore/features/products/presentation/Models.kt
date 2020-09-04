@@ -20,3 +20,5 @@ data class DiscountVM(
     val description: String
 )
 
+val ProductVM.hasDiscount: Boolean get() = discount != null
+

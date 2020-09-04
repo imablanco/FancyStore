@@ -1,5 +1,7 @@
 package com.ablanco.fancystore.data.network
 
+import com.ablanco.fancystore.data.models.DiscountData
+import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -16,14 +18,17 @@ class ServiceBuilder(private val apiBaseUrl: String) {
         val httpClient = OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().apply {
                 level = HttpLoggingInterceptor.Level.BODY
-            })
-            .build()
+            }).build()
+
+        val gson = GsonBuilder()
+            .registerTypeAdapter(DiscountData::class.java, ProductDiscountTypeAdapter())
+            .create()
 
         Retrofit.Builder()
             .baseUrl(apiBaseUrl)
             .client(httpClient)
             .addCallAdapterFactory(EitherCallAdapterFactory())
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
     }
 

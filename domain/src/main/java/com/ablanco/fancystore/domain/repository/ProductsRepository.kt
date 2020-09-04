@@ -1,6 +1,7 @@
 package com.ablanco.fancystore.domain.repository
 
 import com.ablanco.fancystore.domain.base.Either
+import com.ablanco.fancystore.domain.models.Discount
 import com.ablanco.fancystore.domain.models.Product
 
 /**
@@ -10,4 +11,6 @@ import com.ablanco.fancystore.domain.models.Product
 interface ProductsRepository {
 
     suspend fun getProducts(): Either<List<Product>>
+
+    suspend fun getProductDiscounts(): Either<List<Discount>>
 }

@@ -21,6 +21,37 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/ic_mug" />
 
+        <FrameLayout
+            android:id="@+id/layoutDiscount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:translationX="10dp"
+            android:translationY="-10dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible">
+
+            <ImageView
+                android:layout_width="@dimen/productPromotionBadgeSize"
+                android:layout_height="@dimen/productPromotionBadgeSize"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_promotion_badge"
+                app:tint="@color/colorAccent" />
+
+            <TextView
+                android:id="@+id/tvDiscountShortDesc"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                tools:text="10% off" />
+
+        </FrameLayout>
+
         <TextView
             android:id="@+id/tvProductName"
             android:layout_width="0dp"

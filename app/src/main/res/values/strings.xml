@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">FancyStore</string>
+
+    <string name="discountFreeDesc">Buy %1$s of the same product and get %2$s for free!</string>
+    <string name="discountBulkShortDesc">-%1$s\nbuying %2$s</string>
+    <string name="discountBulkDesc">Buy %1$s of the same product and get a %2$s off on them</string>
 </resources>

@@ -2,6 +2,7 @@ package com.ablanco.fancystore.data.repositories
 
 import com.ablanco.fancystore.data.network.ProductsApiDataSource
 import com.ablanco.fancystore.domain.base.Either
+import com.ablanco.fancystore.domain.models.Discount
 import com.ablanco.fancystore.domain.models.Product
 import com.ablanco.fancystore.domain.repository.ProductsRepository
 
@@ -15,4 +16,7 @@ class ProductsRepositoryImpl(
 
     override suspend fun getProducts(): Either<List<Product>> =
         productsApiDataSource.getProducts()
+
+    override suspend fun getProductDiscounts(): Either<List<Discount>> =
+        productsApiDataSource.getProductDiscounts()
 }

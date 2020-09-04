@@ -4,6 +4,8 @@ import com.ablanco.fancystore.data.repositories.ProductsRepositoryImpl
 import com.ablanco.fancystore.domain.base.CoroutinesDispatchers
 import com.ablanco.fancystore.domain.base.CoroutinesDispatchersImpl
 import com.ablanco.fancystore.domain.repository.ProductsRepository
+import com.ablanco.fancystore.domain.usecases.GetDiscountsUseCase
+import com.ablanco.fancystore.domain.usecases.GetDiscountsUseCaseImpl
 import com.ablanco.fancystore.domain.usecases.GetProductsUseCase
 import com.ablanco.fancystore.domain.usecases.GetProductsUseCaseImpl
 import org.koin.core.module.Module
@@ -32,5 +34,6 @@ object DomainResolver : DependencyResolver {
 
     private val useCasesModule = module {
         factory<GetProductsUseCase> { GetProductsUseCaseImpl(get()) }
+        factory<GetDiscountsUseCase> { GetDiscountsUseCaseImpl(get()) }
     }
 }
