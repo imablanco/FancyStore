@@ -4,12 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.ablanco.fancystore.base.ui.DefaultItemCallback
-import com.ablanco.fancystore.base.ui.ViewBindingViewHolder
-import com.ablanco.fancystore.base.ui.switchVisibility
 import com.ablanco.fancystore.databinding.ItemProductBinding
 import com.ablanco.fancystore.features.products.presentation.ProductVM
 import com.ablanco.fancystore.features.products.presentation.hasDiscount
+import com.ablanco.fancystore.utils.ui.*
 
 /**
  * Created by Álvaro Blanco Cabrero on 04/09/2020.
@@ -44,6 +42,18 @@ class ProductsAdapter(
                     onAddProductToBag(getItem(adapterPosition))
                 }
             }
+
+            binding.layoutDiscount.setOnClickListener {
+                if (adapterPosition != RecyclerView.NO_POSITION) {
+                    binding.tvDiscountDesc.showReveal(Top or Right)
+                }
+            }
+
+            binding.tvDiscountDesc.setOnClickListener {
+                if (adapterPosition != RecyclerView.NO_POSITION) {
+                    binding.tvDiscountDesc.hideReveal(Top or Right)
+                }
+            }
         }
 
         fun bind(product: ProductVM) {
@@ -53,6 +63,8 @@ class ProductsAdapter(
                 tvProductPrice.text = product.price
                 layoutDiscount.switchVisibility(product.hasDiscount)
                 tvDiscountShortDesc.text = product.discount?.displayName
+                tvDiscountDesc.invisible()
+                tvDiscountDesc.text = product.discount?.description
             }
         }
     }

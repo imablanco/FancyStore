@@ -1,4 +1,4 @@
-package com.ablanco.fancystore.base.ui
+package com.ablanco.fancystore.utils.ui
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding

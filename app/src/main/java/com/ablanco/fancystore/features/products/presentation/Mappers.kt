@@ -3,8 +3,8 @@ package com.ablanco.fancystore.features.products.presentation
 import androidx.annotation.DrawableRes
 import com.ablanco.fancystore.R
 import com.ablanco.fancystore.base.presentation.StringsProvider
-import com.ablanco.fancystore.base.presentation.formatCurrency
-import com.ablanco.fancystore.base.presentation.formatDecimal
+import com.ablanco.fancystore.utils.presentation.formatCurrency
+import com.ablanco.fancystore.utils.presentation.formatDecimal
 import com.ablanco.fancystore.domain.models.BulkDiscount
 import com.ablanco.fancystore.domain.models.Discount
 import com.ablanco.fancystore.domain.models.FreeItemDiscount

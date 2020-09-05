@@ -4,13 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
+import com.ablanco.fancystore.utils.ui.viewBinding
 
 /**
  * Created by Álvaro Blanco Cabrero on 04/09/2020.
  * FancyStore.
  */
-abstract class BaseActivity<V : ViewBinding> : AppCompatActivity(),
-    WithBinding<V> {
+abstract class BaseActivity<V : ViewBinding> : AppCompatActivity(), WithBinding<V> {
 
     protected abstract val getBinding: (LayoutInflater) -> V
 

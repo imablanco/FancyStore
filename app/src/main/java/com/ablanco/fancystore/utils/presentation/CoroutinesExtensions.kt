@@ -1,4 +1,4 @@
-package com.ablanco.fancystore.base.presentation
+package com.ablanco.fancystore.utils.presentation
 
 import kotlinx.coroutines.Deferred
 

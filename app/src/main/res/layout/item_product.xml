@@ -95,4 +95,16 @@
             app:tint="@color/colorAccent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tvDiscountDesc"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        android:textColor="@color/colorWhite"
+        android:visibility="invisible"
+        tools:text="10% off" />
+
 </androidx.cardview.widget.CardView>

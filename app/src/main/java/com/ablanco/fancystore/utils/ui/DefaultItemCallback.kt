@@ -1,6 +1,6 @@
 @file:Suppress("FunctionName")
 
-package com.ablanco.fancystore.base.ui
+package com.ablanco.fancystore.utils.ui
 
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.DiffUtil

@@ -1,7 +1,7 @@
 package com.ablanco.fancystore.features.products.presentation
 
 import com.ablanco.fancystore.base.presentation.StringsProvider
-import com.ablanco.fancystore.base.presentation.zipPair
+import com.ablanco.fancystore.utils.presentation.zipPair
 import com.ablanco.fancystore.domain.base.CoroutinesDispatchers
 import com.ablanco.fancystore.domain.usecases.GetDiscountsUseCase
 import com.ablanco.fancystore.domain.usecases.GetProductsUseCase

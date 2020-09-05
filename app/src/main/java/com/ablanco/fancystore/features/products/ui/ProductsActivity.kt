@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.ablanco.fancystore.base.ui.BaseActivity
-import com.ablanco.fancystore.base.ui.switchVisibility
+import com.ablanco.fancystore.utils.ui.switchVisibility
 import com.ablanco.fancystore.databinding.ActivityProductsBinding
 import com.ablanco.fancystore.features.products.presentation.ProductsViewAction
 import com.ablanco.fancystore.features.products.presentation.ProductsViewModel
