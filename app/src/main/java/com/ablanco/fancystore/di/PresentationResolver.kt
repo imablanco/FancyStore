@@ -17,7 +17,7 @@ object PresentationResolver : DependencyResolver {
 
     private val viewModelsModule = module {
 
-        viewModel { ProductsViewModel(get(), get(), get(), get()) }
+        viewModel { ProductsViewModel(get(), get(), get(), get(), get(), get()) }
     }
 
     private val miscModule = module {

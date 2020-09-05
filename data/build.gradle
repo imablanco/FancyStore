@@ -9,3 +9,11 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
 
 }
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    kotlinOptions.freeCompilerArgs += "-Xuse-experimental=" +
+            "kotlin.Experimental," +
+            "kotlinx.coroutines.ExperimentalCoroutinesApi," +
+            "kotlinx.coroutines.InternalCoroutinesApi," +
+            "kotlinx.coroutines.FlowPreview"
+}

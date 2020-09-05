@@ -3,6 +3,7 @@ package com.ablanco.fancystore.di
 import com.ablanco.fancystore.data.network.ProductsApiDataSource
 import com.ablanco.fancystore.data.network.ProductsService
 import com.ablanco.fancystore.data.network.ServiceBuilder
+import com.ablanco.fancystore.data.persistence.ProductsMemoryDataSource
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
@@ -12,7 +13,7 @@ import org.koin.dsl.module
  */
 object DataResolver : DependencyResolver {
 
-    override val modules: List<Module> get() = listOf(networkModule)
+    override val modules: List<Module> get() = listOf(networkModule, persistenceModule)
 
     private val networkModule = module {
         /*Services*/
@@ -21,6 +22,10 @@ object DataResolver : DependencyResolver {
 
         /*DataSources*/
         factory { ProductsApiDataSource(get()) }
+    }
 
+    private val persistenceModule = module {
+        /*DataSources*/
+        factory { ProductsMemoryDataSource() }
     }
 }

@@ -1,18 +1,25 @@
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlHighlight">@color/colorControlHighLight</item>
         <item name="android:windowBackground">@color/colorBackground</item>
         <item name="android:textColor">@color/colorTextPrimary</item>
         <item name="cardViewStyle">@style/CardViewStyle</item>
+        <item name="toolbarStyle">@style/ToolbarStyle</item>
     </style>
 
     <style name="CardViewStyle" parent="CardView">
         <item name="cardBackgroundColor">@color/colorCardView</item>
         <item name="cardCornerRadius">@dimen/cornerRadiusNormal</item>
         <item name="cardElevation">@dimen/elevationNormal</item>
+    </style>
+
+    <style name="ToolbarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="titleTextColor">@color/colorWhite</item>
+        <item name="android:background">?colorPrimary</item>
     </style>
 
 </resources>

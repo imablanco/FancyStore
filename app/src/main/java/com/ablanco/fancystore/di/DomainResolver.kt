@@ -4,10 +4,7 @@ import com.ablanco.fancystore.data.repositories.ProductsRepositoryImpl
 import com.ablanco.fancystore.domain.base.CoroutinesDispatchers
 import com.ablanco.fancystore.domain.base.CoroutinesDispatchersImpl
 import com.ablanco.fancystore.domain.repository.ProductsRepository
-import com.ablanco.fancystore.domain.usecases.GetDiscountsUseCase
-import com.ablanco.fancystore.domain.usecases.GetDiscountsUseCaseImpl
-import com.ablanco.fancystore.domain.usecases.GetProductsUseCase
-import com.ablanco.fancystore.domain.usecases.GetProductsUseCaseImpl
+import com.ablanco.fancystore.domain.usecases.*
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
@@ -29,11 +26,13 @@ object DomainResolver : DependencyResolver {
     }
 
     private val repositoriesModule = module {
-        single<ProductsRepository> { ProductsRepositoryImpl(get()) }
+        single<ProductsRepository> { ProductsRepositoryImpl(get(), get()) }
     }
 
     private val useCasesModule = module {
         factory<GetProductsUseCase> { GetProductsUseCaseImpl(get()) }
         factory<GetDiscountsUseCase> { GetDiscountsUseCaseImpl(get()) }
+        factory<AddProductToCartUseCase> { AddProductToCartUseCaseImpl(get()) }
+        factory<GetCartItemCountUseCase> { GetCartItemCountUseCaseImpl(get()) }
     }
 }

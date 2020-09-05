@@ -14,4 +14,5 @@
     <color name="colorTextPrimary">@color/colorBlack</color>
     <color name="colorCardView">@color/colorWhite</color>
     <color name="colorBackground">#F8F8F8</color>
+    <color name="colorControlHighLight">#426D32FA</color>
 </resources>

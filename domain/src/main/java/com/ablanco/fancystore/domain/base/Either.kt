@@ -3,11 +3,13 @@ package com.ablanco.fancystore.domain.base
 /**
  * Created by Álvaro Blanco Cabrero on 03/09/2020.
  * FancyStore.
+ *
+ * A right-biased class that represents successful values in the right side and errors in the left.
  */
 sealed class Either<A : Any> {
 
     fun rightOrNull(): A? = (this as? Right<A>)?.value
-    fun leftOrNull(): DomainError? = (this as? Left<A>)?.error
+    fun leftOrNull(): Throwable? = (this as? Left<A>)?.error
 
     inline fun <B : Any> map(mapper: (A) -> B): Either<B> =
         when (this) {
@@ -27,7 +29,7 @@ sealed class Either<A : Any> {
             )
         }
 
-    inline fun <B> fold(right: (A) -> B, left: (DomainError) -> B): B =
+    inline fun <B> fold(right: (A) -> B, left: (Throwable) -> B): B =
         when (this) {
             is Right -> right(value)
             is Left -> left(error)
@@ -47,6 +49,6 @@ sealed class Either<A : Any> {
     fun ignoreElement(): Either<Unit> = map { Unit }
 }
 
-data class Left<A : Any>(val error: DomainError) : Either<A>()
+data class Left<A : Any>(val error: Throwable) : Either<A>()
 data class Right<A : Any>(val value: A) : Either<A>()
 
