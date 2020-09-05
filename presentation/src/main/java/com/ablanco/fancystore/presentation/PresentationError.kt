@@ -6,4 +6,12 @@ package com.ablanco.fancystore.presentation
  *
  * Base contract for presentation errors
  */
-interface PresentationError
+interface PresentationError {
+    val message: String
+}
+
+/*Default presentation error that is only mean to be displayed*/
+class DefaultError(override val message: String) : PresentationError
+
+/*Error that can be recovered via [onRetry] block*/
+class RecoverableError(override val message: String, val onRetry: () -> Unit) : PresentationError

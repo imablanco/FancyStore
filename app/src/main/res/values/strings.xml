@@ -1,9 +1,16 @@
 <resources>
     <string name="app_name">FancyStore</string>
 
+    <!--Common-->
+    <string name="errorActionRetry">Retry</string>
+
+    <!--Products-->
     <string name="productsTitle">Products</string>
     <string name="discountFreeDesc">Buy %1$s of the same product and get %2$s for free!</string>
     <string name="discountBulkShortDesc">-%1$s\nbuying %2$s</string>
     <string name="discountBulkDesc">Buy %1$s of the same product and get a %2$s off on them</string>
-    <string name="menuCartTitle">Cart</string>
+    <string name="productsMenuCartTitle">Cart</string>
+    <string name="productsListMessageEmpty">There are no products to show</string>
+    <string name="productsListMessageError">There was an error fetching products</string>
+    <string name="productsAddToCartMessageError">There was an error adding the product to the cart</string>
 </resources>

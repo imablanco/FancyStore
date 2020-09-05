@@ -6,7 +6,7 @@
         android:id="@+id/actionCart"
         android:menuCategory="secondary"
         android:orderInCategory="1"
-        android:title="@string/menuCartTitle"
+        android:title="@string/productsMenuCartTitle"
         app:actionLayout="@layout/view_cart_menu_icon"
         app:showAsAction="always" />
 </menu>

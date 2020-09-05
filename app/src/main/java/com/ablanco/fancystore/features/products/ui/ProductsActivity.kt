@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.ablanco.fancystore.R
 import com.ablanco.fancystore.base.ui.BaseActivity
+import com.ablanco.fancystore.base.ui.ErrorDisplayObserver
 import com.ablanco.fancystore.databinding.ActivityProductsBinding
 import com.ablanco.fancystore.databinding.ViewCartMenuIconBinding
 import com.ablanco.fancystore.features.products.presentation.ProductsIntent
@@ -57,9 +58,15 @@ class ProductsActivity : BaseActivity<ActivityProductsBinding>() {
         viewModel.viewActions.observe(this, Observer { action ->
             when (action) {
                 is ProductsViewAction.ShowEmptyProducts ->
-                    Snackbar.make(binding.root, "", Snackbar.LENGTH_SHORT)
+                    Snackbar.make(
+                        binding.root,
+                        R.string.productsListMessageEmpty,
+                        Snackbar.LENGTH_SHORT
+                    ).show()
             }
         })
+
+        viewModel.viewErrors.observe(this, ErrorDisplayObserver())
 
         if (savedInstanceState == null) {
             viewModel.load()

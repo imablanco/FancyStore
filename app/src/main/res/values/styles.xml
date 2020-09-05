@@ -6,7 +6,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorControlHighlight">@color/colorControlHighLight</item>
         <item name="android:windowBackground">@color/colorBackground</item>
-        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textColorPrimary">@color/colorTextPrimary</item>
         <item name="cardViewStyle">@style/CardViewStyle</item>
         <item name="toolbarStyle">@style/ToolbarStyle</item>
     </style>
