@@ -23,4 +23,6 @@ interface ProductsRepository {
     suspend fun getCartItemCount(): Flow<Either<Int>>
 
     suspend fun getCart(): Flow<Either<Cart>>
+
+    suspend fun payCart(): Either<Unit>
 }

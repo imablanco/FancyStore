@@ -3,7 +3,9 @@ package com.ablanco.fancystore.features.checkout.presentation
 import com.ablanco.fancystore.R
 import com.ablanco.fancystore.base.presentation.StringsProvider
 import com.ablanco.fancystore.domain.base.CoroutinesDispatchers
+import com.ablanco.fancystore.domain.base.Right
 import com.ablanco.fancystore.domain.usecases.GetCartUseCase
+import com.ablanco.fancystore.domain.usecases.PayCartUseCase
 import com.ablanco.fancystore.presentation.*
 import kotlinx.coroutines.flow.collect
 
@@ -12,18 +14,25 @@ import kotlinx.coroutines.flow.collect
  * FancyStore.
  */
 
-sealed class CheckoutViewAction : ViewAction
+sealed class CheckoutViewAction : ViewAction {
+    object ShowPaymentConfirmation : CheckoutViewAction()
+}
 
-sealed class CheckoutIntent : Intent
+sealed class CheckoutIntent : Intent {
+
+    object ContinueWithPayment : CheckoutIntent()
+}
 
 data class CheckoutViewState(
     val isLoading: Boolean = false,
-    val items: List<CheckoutItem> = emptyList()
+    val items: List<CheckoutItem> = emptyList(),
+    val isPayEnabled: Boolean = false
 ) : ViewState
 
 class CheckoutViewModel(
     private val getCartUseCase: GetCartUseCase,
     private val stringsProvider: StringsProvider,
+    private val payCartUseCase: PayCartUseCase,
     dispatchers: CoroutinesDispatchers
 ) : BaseViewModel<CheckoutViewState, CheckoutViewAction, CheckoutIntent>(dispatchers) {
 
@@ -37,8 +46,13 @@ class CheckoutViewModel(
             getCartUseCase().collect {
                 it.fold(
                     {
-                        setState { copy(isLoading = false, items = mapper.map(it)) }
-                        //TODO emoty state
+                        setState {
+                            copy(
+                                isLoading = false,
+                                items = mapper.map(it),
+                                isPayEnabled = it.products.isNotEmpty()
+                            )
+                        }
                     },
                     {
                         setState { copy(isLoading = false) }
@@ -51,6 +65,15 @@ class CheckoutViewModel(
         }
     }
 
-    override fun handleIntent(intent: Intent) {
+    override fun handleIntent(intent: CheckoutIntent) = when (intent) {
+        is CheckoutIntent.ContinueWithPayment -> payCart()
+    }
+
+    private fun payCart() {
+        launch {
+            val isSuccess = payCartUseCase() is Right
+            if (isSuccess) dispatchAction(CheckoutViewAction.ShowPaymentConfirmation)
+            else dispatchError(DefaultError(stringsProvider(R.string.checkoutPaymentError)))
+        }
     }
 }

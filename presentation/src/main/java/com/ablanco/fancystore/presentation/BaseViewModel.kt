@@ -58,7 +58,7 @@ abstract class BaseViewModel<V : ViewState, A : ViewAction, I : Intent>(
 
     abstract fun load()
 
-    protected abstract fun handleIntent(intent: Intent)
+    protected abstract fun handleIntent(intent: I)
 
     /**
      * Returns the current state of the View. Its is safe to call
@@ -69,7 +69,7 @@ abstract class BaseViewModel<V : ViewState, A : ViewAction, I : Intent>(
     /**
      * Handles the given [Intent] sent by the View
      */
-    fun sendIntent(intent: Intent) = handleIntent(intent)
+    fun sendIntent(intent: I) = handleIntent(intent)
 
     /**
      * Mutates the current [ViewState] via [reduce] function and notify

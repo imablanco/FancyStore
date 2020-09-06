@@ -38,5 +38,6 @@ object DomainResolver : DependencyResolver {
         factory<AddProductToCartUseCase> { AddProductToCartUseCaseImpl(get()) }
         factory<GetCartItemCountUseCase> { GetCartItemCountUseCaseImpl(get()) }
         factory<GetCartUseCase> { (GetCartUseCaseImpl(get())) }
+        factory<PayCartUseCase> { (PayCartUseCaseImpl(get())) }
     }
 }

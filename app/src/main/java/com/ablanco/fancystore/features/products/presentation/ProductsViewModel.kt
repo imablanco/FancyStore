@@ -75,11 +75,9 @@ class ProductsViewModel(
         loadProducts()
     }
 
-    override fun handleIntent(intent: Intent) {
-        when (intent) {
-            is ProductsIntent.AddProductToCart -> addProductToCart(intent.product.id)
-            is ProductsIntent.CartClicked -> dispatchAction(ProductsViewAction.NavigateToCart)
-        }
+    override fun handleIntent(intent: ProductsIntent) = when (intent) {
+        is ProductsIntent.AddProductToCart -> addProductToCart(intent.product.id)
+        is ProductsIntent.CartClicked -> dispatchAction(ProductsViewAction.NavigateToCart)
     }
 
     private fun loadProducts() {

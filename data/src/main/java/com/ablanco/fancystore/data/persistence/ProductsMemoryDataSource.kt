@@ -33,6 +33,8 @@ class ProductsMemoryDataSource {
 
     fun getCartProducts(): Flow<List<CartProduct>> = cartCache[Unit].map { it.orEmpty() }
 
+    fun clearCartProducts() = cartCache.clear()
+
     suspend fun saveProductToCart(product: Product) {
         val products = cartCache[Unit].first().orEmpty()
         cartCache[Unit] = products + product.toCartProduct()

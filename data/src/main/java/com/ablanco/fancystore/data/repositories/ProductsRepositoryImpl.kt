@@ -57,4 +57,10 @@ class ProductsRepositoryImpl(
             emit(Right(cartMapper.map(it, discounts)))
         }
     }
+
+    /*To simulate payment behavior just return success and clear cart cache*/
+    override suspend fun payCart(): Either<Unit> {
+        cacheDataSource.clearCartProducts()
+        return Right(Unit)
+    }
 }

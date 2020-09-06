@@ -21,5 +21,8 @@
     <string name="checkoutTotal">Total</string>
     <string name="checkoutAppliedPromos">Applied promotions:</string>
     <string name="checkoutError">There was an error fetching the cart</string>
+    <string name="checkoutPaymentError">There was an error with the payment</string>
+    <string name="checkoutPaymentSuccess">Payment completed successfully</string>
+    <string name="checkoutEmptyState">There is no products in the cart yet</string>
 
 </resources>
