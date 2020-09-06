@@ -1,8 +1,7 @@
 package com.ablanco.fancystore.data.models
 
-import com.ablanco.fancystore.domain.models.BulkDiscount
 import com.ablanco.fancystore.domain.models.Discount
-import com.ablanco.fancystore.domain.models.FreeItemDiscount
+import com.ablanco.fancystore.domain.models.ItemsPromoDiscount
 import com.ablanco.fancystore.domain.models.Product
 
 /**
@@ -21,14 +20,10 @@ fun ProductData.toDomain(): Product =
     )
 
 fun DiscountData.toDomain(): Discount = when (this) {
-    is FreeItemDiscountData -> FreeItemDiscount(
+    is ItemsPromoDiscountData -> ItemsPromoDiscount(
         items = items,
         minAmount = minAmount,
-        freeAmount = freeAmount
-    )
-    is BulkDiscountData -> BulkDiscount(
-        items = items,
-        minAmount = minAmount,
+        amountFactor = amountFactor,
         priceFactor = priceFactor
     )
 }
