@@ -73,6 +73,44 @@ class ProductsViewModelTests : BaseViewModelTest() {
     }
 
     @Test
+    fun `Given discounts When VM loads Then products has discounts`() {
+        /*Given*/
+        val products = Right(MockData.mockProducts)
+        val discounts = Right(MockData.mockDiscounts)
+        val viewModel = getViewModel(
+            productsResponse = products,
+            discountsResponse = discounts
+        )
+        val testObserver = TestObserver<ProductsViewState>()
+        viewModel.viewState.observeForever(testObserver)
+
+        /*When*/
+        viewModel.load()
+
+        /*Then*/
+        Assert.assertTrue(testObserver.lastValue.products.any { it.hasDiscount })
+    }
+
+    @Test
+    fun `Given no discounts When VM loads Then products has no discounts`() {
+        /*Given*/
+        val products = Right(MockData.mockProducts)
+        val discounts = Right<List<Discount>>(emptyList())
+        val viewModel = getViewModel(
+            productsResponse = products,
+            discountsResponse = discounts
+        )
+        val testObserver = TestObserver<ProductsViewState>()
+        viewModel.viewState.observeForever(testObserver)
+
+        /*When*/
+        viewModel.load()
+
+        /*Then*/
+        Assert.assertTrue(testObserver.lastValue.products.none { it.hasDiscount })
+    }
+
+    @Test
     fun `Given a list of products When VM loads and is error Then products has no items`() {
         /*Given*/
         val viewModel = getViewModel(productsResponse = Left(GenericError))

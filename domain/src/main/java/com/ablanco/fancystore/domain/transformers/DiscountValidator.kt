@@ -3,7 +3,6 @@ package com.ablanco.fancystore.domain.transformers
 import com.ablanco.fancystore.domain.models.CartProduct
 import com.ablanco.fancystore.domain.models.Discount
 import com.ablanco.fancystore.domain.models.ItemsPromoDiscount
-import com.ablanco.fancystore.domain.models.Product
 
 /**
  * Created by Álvaro Blanco Cabrero on 06/09/2020.

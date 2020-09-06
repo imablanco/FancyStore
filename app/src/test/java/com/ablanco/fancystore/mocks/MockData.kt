@@ -1,7 +1,14 @@
 package com.ablanco.fancystore.mocks
 
+import com.ablanco.fancystore.data.models.CartMapper
+import com.ablanco.fancystore.data.models.toCartProduct
+import com.ablanco.fancystore.domain.models.Cart
+import com.ablanco.fancystore.domain.models.Discount
 import com.ablanco.fancystore.domain.models.ItemsPromoDiscount
 import com.ablanco.fancystore.domain.models.Product
+import com.ablanco.fancystore.domain.transformers.DiscountTransformersImpl
+import com.ablanco.fancystore.domain.transformers.DiscountValidator
+import com.ablanco.fancystore.domain.transformers.ItemsPromoDiscountValidator
 
 /**
  * Created by Álvaro Blanco Cabrero on 06/09/2020.
@@ -27,7 +34,7 @@ object MockData {
         )
     )
 
-    val mockDiscounts = listOf(
+    val mockDiscounts: List<Discount> = listOf(
         ItemsPromoDiscount(
             items = listOf("VOUCHER"),
             minAmount = 2,
@@ -41,4 +48,13 @@ object MockData {
             priceFactor = 0.05
         )
     )
+
+    @Suppress("UNCHECKED_CAST")
+    fun buildMockCart(products: List<Product>): Cart {
+        val cartProducts = products.map(Product::toCartProduct)
+        return CartMapper(
+            discountTransformers = DiscountTransformersImpl(),
+            validators = listOf(ItemsPromoDiscountValidator()) as List<DiscountValidator<Discount>>
+        ).map(cartProducts, mockDiscounts)
+    }
 }
