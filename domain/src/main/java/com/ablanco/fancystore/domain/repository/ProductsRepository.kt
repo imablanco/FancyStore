@@ -1,6 +1,7 @@
 package com.ablanco.fancystore.domain.repository
 
 import com.ablanco.fancystore.domain.base.Either
+import com.ablanco.fancystore.domain.models.Cart
 import com.ablanco.fancystore.domain.models.Discount
 import com.ablanco.fancystore.domain.models.Product
 import kotlinx.coroutines.flow.Flow
@@ -20,4 +21,6 @@ interface ProductsRepository {
     /*By returning a [Flow] here we guarantee that every component is always be up to date
     * by subscribing to us*/
     suspend fun getCartItemCount(): Flow<Either<Int>>
+
+    suspend fun getCart(): Flow<Either<Cart>>
 }

@@ -1,6 +1,8 @@
 package com.ablanco.fancystore.data.persistence
 
+import com.ablanco.fancystore.data.models.toCartProduct
 import com.ablanco.fancystore.domain.base.Either
+import com.ablanco.fancystore.domain.models.CartProduct
 import com.ablanco.fancystore.domain.models.Discount
 import com.ablanco.fancystore.domain.models.Product
 import kotlinx.coroutines.flow.Flow
@@ -15,7 +17,7 @@ class ProductsMemoryDataSource {
 
     private val productsCache: MemoryCache<String, Product> = MemoryCache()
     private val discountsCache: MemoryCache<Unit, List<Discount>> = MemoryCache()
-    private val cartCache: FlowMemoryCache<Unit, List<Product>> = FlowMemoryCache()
+    private val cartCache: FlowMemoryCache<Unit, List<CartProduct>> = FlowMemoryCache()
 
     fun getProduct(productId: String): Either<Product> = productsCache.get(productId)
 
@@ -29,10 +31,10 @@ class ProductsMemoryDataSource {
 
     fun saveDiscounts(discounts: List<Discount>) = discountsCache.set(Unit, discounts)
 
-    fun getCart(): Flow<List<Product>> = cartCache[Unit].map { it.orEmpty() }
+    fun getCartProducts(): Flow<List<CartProduct>> = cartCache[Unit].map { it.orEmpty() }
 
     suspend fun saveProductToCart(product: Product) {
         val products = cartCache[Unit].first().orEmpty()
-        cartCache[Unit] = products + product
+        cartCache[Unit] = products + product.toCartProduct()
     }
 }

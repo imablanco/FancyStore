@@ -1,15 +1,19 @@
 package com.ablanco.fancystore.data.repositories
 
+import com.ablanco.fancystore.data.models.CartMapper
 import com.ablanco.fancystore.data.network.ProductsApiDataSource
 import com.ablanco.fancystore.data.persistence.ProductsMemoryDataSource
 import com.ablanco.fancystore.domain.base.Either
 import com.ablanco.fancystore.domain.base.GenericError
 import com.ablanco.fancystore.domain.base.Left
 import com.ablanco.fancystore.domain.base.Right
+import com.ablanco.fancystore.domain.models.Cart
 import com.ablanco.fancystore.domain.models.Discount
 import com.ablanco.fancystore.domain.models.Product
 import com.ablanco.fancystore.domain.repository.ProductsRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 
 /**
@@ -18,7 +22,8 @@ import kotlinx.coroutines.flow.map
  */
 class ProductsRepositoryImpl(
     private val apiDataSource: ProductsApiDataSource,
-    private val cacheDataSource: ProductsMemoryDataSource
+    private val cacheDataSource: ProductsMemoryDataSource,
+    private val cartMapper: CartMapper
 ) : ProductsRepository {
 
     override suspend fun getProducts(): Either<List<Product>> =
@@ -44,5 +49,12 @@ class ProductsRepositoryImpl(
     /*Returning [Either] here is and useless as it always return Right instances, but in a real app
     * this method would call back with all its implications*/
     override suspend fun getCartItemCount(): Flow<Either<Int>> =
-        cacheDataSource.getCart().map { Right(it.size) }
+        cacheDataSource.getCartProducts().map { Right(it.size) }
+
+    override suspend fun getCart(): Flow<Either<Cart>> = flow {
+        val discounts = cacheDataSource.getDiscounts().rightOrNull().orEmpty()
+        cacheDataSource.getCartProducts().collect {
+            emit(Right(cartMapper.map(it, discounts)))
+        }
+    }
 }

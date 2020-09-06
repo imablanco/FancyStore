@@ -2,6 +2,7 @@ package com.ablanco.fancystore.di
 
 import com.ablanco.fancystore.base.presentation.StringsProvider
 import com.ablanco.fancystore.base.presentation.StringsProviderImpl
+import com.ablanco.fancystore.features.checkout.presentation.CheckoutViewModel
 import com.ablanco.fancystore.features.products.presentation.ProductsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
@@ -18,6 +19,7 @@ object PresentationResolver : DependencyResolver {
     private val viewModelsModule = module {
 
         viewModel { ProductsViewModel(get(), get(), get(), get(), get(), get()) }
+        viewModel { CheckoutViewModel(get(), get(), get()) }
     }
 
     private val miscModule = module {

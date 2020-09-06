@@ -50,6 +50,10 @@ class CheckoutAdapter :
         }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when (holder) {
+            is ProductViewHolder -> holder.bind(getItem(position) as CheckoutProduct)
+            is ResumeViewHolder -> holder.bind(getItem(position) as CheckoutResume)
+        }
     }
 
     override fun getItemViewType(position: Int): Int = when (getItem(position)) {
@@ -83,7 +87,7 @@ class CheckoutAdapter :
                 tvTotal.text = resume.total
                 tvSubtotal.text = resume.subtotal
                 tvAppliedPromosDiscount.text = resume.discount
-                tvAppliedPromos.text = resume.discountInfo
+                tvAppliedPromos.text = resume.discountBreakdown
                 groupDiscount.switchVisibility(resume.discount != null)
             }
         }

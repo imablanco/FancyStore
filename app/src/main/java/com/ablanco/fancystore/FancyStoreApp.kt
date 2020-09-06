@@ -16,6 +16,8 @@ class FancyStoreApp : Application() {
     override fun onCreate() {
         super.onCreate()
 
+        /*In small apps that are not mean to grow I always perform DI with Koin because its far more
+        * simpler than Dagger but obviously for middle sized to big apps I always go with Dagger */
         startKoin {
             androidContext(this@FancyStoreApp)
             properties(

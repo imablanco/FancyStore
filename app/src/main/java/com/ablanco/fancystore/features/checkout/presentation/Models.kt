@@ -22,5 +22,5 @@ data class CheckoutResume(
     val total: String,
     val subtotal: String,
     val discount: String?,
-    val discountInfo: String?
+    val discountBreakdown: String?
 ) : CheckoutItem()
