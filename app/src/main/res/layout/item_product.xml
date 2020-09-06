@@ -102,6 +102,7 @@
         android:layout_height="match_parent"
         android:background="@color/colorAccent"
         android:gravity="center"
+        android:padding="@dimen/spacingMini"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
         android:textColor="@color/colorWhite"
         android:visibility="invisible"
