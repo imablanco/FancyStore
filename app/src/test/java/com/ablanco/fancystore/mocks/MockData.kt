@@ -8,6 +8,7 @@ import com.ablanco.fancystore.domain.models.ItemsPromoDiscount
 import com.ablanco.fancystore.domain.models.Product
 import com.ablanco.fancystore.domain.transformers.DiscountTransformersImpl
 import com.ablanco.fancystore.domain.transformers.DiscountValidator
+import com.ablanco.fancystore.domain.transformers.DiscountValidatorsImpl
 import com.ablanco.fancystore.domain.transformers.ItemsPromoDiscountValidator
 
 /**
@@ -54,7 +55,7 @@ object MockData {
         val cartProducts = products.map(Product::toCartProduct)
         return CartMapper(
             discountTransformers = DiscountTransformersImpl(),
-            validators = listOf(ItemsPromoDiscountValidator()) as List<DiscountValidator<Discount>>
+            discountValidators = DiscountValidatorsImpl()
         ).map(cartProducts, mockDiscounts)
     }
 }

@@ -34,7 +34,6 @@ object DataResolver : DependencyResolver {
     }
 
     private val miscModule = module {
-        factory(named(DiscountValidators)) { listOf(ItemsPromoDiscountValidator()) }
         factory { CartMapper(get(), get(named(DiscountValidators))) }
     }
 }

@@ -4,6 +4,7 @@ import com.ablanco.fancystore.domain.models.CartProduct
 import com.ablanco.fancystore.domain.models.Discount
 import com.ablanco.fancystore.domain.models.ItemsPromoDiscount
 import kotlin.math.floor
+import kotlin.reflect.KClass
 
 /**
  * Created by Álvaro Blanco Cabrero on 06/09/2020.
@@ -14,15 +15,7 @@ import kotlin.math.floor
  */
 interface DiscountTransformer<T : Discount> {
 
-    fun applyDiscount(products: List<CartProduct>, discount: T): List<CartProduct>
-}
-
-/**
- * Generic way to apply transformations for a dynamic list of [Discount]
- */
-interface DiscountTransformers {
-
-    fun applyDiscounts(products: List<CartProduct>, discounts: List<Discount>): List<CartProduct>
+    fun applyDiscount(products: List<CartProduct>, discount: Discount): List<CartProduct>
 }
 
 /**
@@ -37,20 +30,26 @@ abstract class BaseDiscountTransformer<T : Discount> : DiscountTransformer<T> {
     * ONLY called if the given discount is valid for this products*/
     abstract fun apply(products: List<CartProduct>, discount: T): List<CartProduct>
 
+    @Suppress("UNCHECKED_CAST")
     final override fun applyDiscount(
         products: List<CartProduct>,
-        discount: T
+        discount: Discount
     ): List<CartProduct> {
         /* 1 - Group all products by code to easily operate on each list
         *  2 - Discard products that do not meet validator requirements
         *  3 - Delegate transformation to subclass*/
+        val checkedDiscount = ensureDiscount<T>(discount)
         return products
             .groupBy { it.code }
             .mapValues { (_, group) ->
-                if (!validator.isValid(group, discount)) return@mapValues group
-                apply(group, discount)
+                if (!validator.isValid(group, checkedDiscount)) return@mapValues group
+                apply(group, checkedDiscount)
             }.values.flatten()
     }
+
+    @Suppress("UNCHECKED_CAST")
+    private fun <T> ensureDiscount(discount: Discount): T = discount as? T
+        ?: throw IllegalArgumentException("Invalid type ${discount.javaClass.name} passed to this transformer")
 }
 
 class ItemsPromoDiscountTransformer : BaseDiscountTransformer<ItemsPromoDiscount>() {
@@ -72,25 +71,5 @@ class ItemsPromoDiscountTransformer : BaseDiscountTransformer<ItemsPromoDiscount
         val noDiscountItems = products.drop(discountItemCount)
 
         return discountItems + noDiscountItems
-    }
-}
-
-class DiscountTransformersImpl : DiscountTransformers {
-
-    override fun applyDiscounts(
-        products: List<CartProduct>,
-        discounts: List<Discount>
-    ): List<CartProduct> =
-        discounts.foldRight(products) { discount, acc ->
-            val transformer = transformerForDiscount(discount)
-            transformer?.applyDiscount(acc, discount) ?: acc
-        }
-
-    @Suppress("UNCHECKED_CAST")
-    private fun transformerForDiscount(discount: Discount): DiscountTransformer<Discount>? {
-        val transformer = when (discount) {
-            is ItemsPromoDiscount -> ItemsPromoDiscountTransformer()
-        }
-        return transformer as? DiscountTransformer<Discount>
     }
 }
