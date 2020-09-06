@@ -64,7 +64,8 @@
         android:id="@+id/tvTotal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+        android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/tvTotalLabel"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="$2.00" />

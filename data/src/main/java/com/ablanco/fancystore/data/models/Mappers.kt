@@ -2,7 +2,6 @@ package com.ablanco.fancystore.data.models
 
 import com.ablanco.fancystore.domain.models.*
 import com.ablanco.fancystore.domain.transformers.DiscountTransformers
-import com.ablanco.fancystore.domain.transformers.DiscountValidators
 
 /**
  * Created by Álvaro Blanco Cabrero on 03/09/2020.
@@ -39,17 +38,13 @@ fun Product.toCartProduct(): CartProduct =
 /**
  * Maps a list of [Product] to a [Cart] instance by applying the given list of [Discount]
  */
-class CartMapper(
-    private val discountTransformers: DiscountTransformers,
-    private val discountValidators: DiscountValidators
-) {
+class CartMapper(private val discountTransformers: DiscountTransformers) {
 
     fun map(products: List<CartProduct>, discounts: List<Discount>): Cart {
-        val newProducts = discountTransformers.applyDiscounts(products, discounts)
-        val validators = discountValidators.validators
-        val appliedDiscounts = discounts.filter { d ->
-            validators.any { it.isValid(products, d) }
-        }
+        val (newProducts, appliedDiscounts) = discountTransformers.applyDiscounts(
+            products,
+            discounts
+        )
         val total = newProducts.sumByDouble { it.finalPrice }
         val subtotal = products.sumByDouble { it.originalPrice }
         return Cart(

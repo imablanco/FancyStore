@@ -27,7 +27,8 @@ abstract class BaseDiscountTransformer<T : Discount> : DiscountTransformer<T> {
     protected abstract val validator: DiscountValidator<T>
 
     /*Child classes must perform the real transformation here.
-    * ONLY called if the given discount is valid for this products*/
+    * ONLY called if the given discount is valid for this products
+    * It is guaranteed that the given list contains products with the same id*/
     abstract fun apply(products: List<CartProduct>, discount: T): List<CartProduct>
 
     @Suppress("UNCHECKED_CAST")
@@ -54,7 +55,7 @@ abstract class BaseDiscountTransformer<T : Discount> : DiscountTransformer<T> {
 
 class ItemsPromoDiscountTransformer : BaseDiscountTransformer<ItemsPromoDiscount>() {
 
-    override val validator: DiscountValidator<ItemsPromoDiscount> = ItemsPromoDiscountValidator()
+    override val validator = ItemsPromoDiscountValidator()
 
     override fun apply(
         products: List<CartProduct>,

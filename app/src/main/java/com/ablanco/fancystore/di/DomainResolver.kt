@@ -6,8 +6,6 @@ import com.ablanco.fancystore.domain.base.CoroutinesDispatchersImpl
 import com.ablanco.fancystore.domain.repository.ProductsRepository
 import com.ablanco.fancystore.domain.transformers.DiscountTransformers
 import com.ablanco.fancystore.domain.transformers.DiscountTransformersImpl
-import com.ablanco.fancystore.domain.transformers.DiscountValidators
-import com.ablanco.fancystore.domain.transformers.DiscountValidatorsImpl
 import com.ablanco.fancystore.domain.usecases.*
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -28,7 +26,6 @@ object DomainResolver : DependencyResolver {
     private val coreModule = module {
         single<CoroutinesDispatchers> { CoroutinesDispatchersImpl() }
         single<DiscountTransformers> { DiscountTransformersImpl() }
-        single<DiscountValidators> { DiscountValidatorsImpl() }
     }
 
     private val repositoriesModule = module {

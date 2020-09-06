@@ -8,7 +8,7 @@ import com.ablanco.fancystore.domain.models.ItemsPromoDiscount
  * Created by Álvaro Blanco Cabrero on 06/09/2020.
  * FancyStore.
  *
- * Validates if the [Discount] applies to given list of [CartProduct]
+ * Validates if the [Discount] applies to ANY of the given list of [CartProduct]
  */
 interface DiscountValidator<T : Discount> {
 
@@ -30,10 +30,8 @@ abstract class BaseDiscountValidator<T : Discount> : DiscountValidator<T> {
         /* 1 - Group all products by code to easily operate on each list
         *  2 - Check if discount applies to product group code and specific validations to subclass*/
         return products
-            .groupBy { it.code }
-            .any {
-                it.key in discount.items && apply(it.value, checkedDiscount)
-            }
+            .groupBy(CartProduct::code)
+            .any { it.key in discount.items && apply(it.value, checkedDiscount) }
     }
 
     @Suppress("UNCHECKED_CAST")

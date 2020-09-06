@@ -5,16 +5,13 @@ import com.ablanco.fancystore.data.network.ProductsApiDataSource
 import com.ablanco.fancystore.data.network.ProductsService
 import com.ablanco.fancystore.data.network.ServiceBuilder
 import com.ablanco.fancystore.data.persistence.ProductsMemoryDataSource
-import com.ablanco.fancystore.domain.transformers.ItemsPromoDiscountValidator
 import org.koin.core.module.Module
-import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 /**
  * Created by Álvaro Blanco Cabrero on 03/09/2020.
  * FancyStore.
  */
-private val DiscountValidators = "named:discountValidators"
 
 object DataResolver : DependencyResolver {
 
@@ -34,6 +31,6 @@ object DataResolver : DependencyResolver {
     }
 
     private val miscModule = module {
-        factory { CartMapper(get(), get(named(DiscountValidators))) }
+        factory { CartMapper(get()) }
     }
 }
