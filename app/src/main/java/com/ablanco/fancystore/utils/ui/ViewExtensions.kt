@@ -1,9 +1,8 @@
 package com.ablanco.fancystore.utils.ui
 
-import android.app.Activity
-import android.view.LayoutInflater
+import android.graphics.Paint
 import android.view.View
-import androidx.viewbinding.ViewBinding
+import android.widget.TextView
 
 /**
  * Created by Álvaro Blanco Cabrero on 04/09/2020.
@@ -32,9 +31,7 @@ fun View.switchVisibility(condition: Boolean, turnInvisible: Boolean = false) =
         }
     }
 
-/**
- * Extension to connect this [Activity] with its [ViewBinding]
- */
-fun <T : ViewBinding> Activity.viewBinding(inflate: (LayoutInflater) -> T) = lazy {
-    inflate(layoutInflater)
+fun TextView.strikeThrough() {
+    paintFlags = paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 }
+

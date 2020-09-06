@@ -8,9 +8,19 @@
     <string name="productsTitle">Products</string>
     <string name="discountFreeDesc">Buy %1$s of the same product and get %2$s for free!</string>
     <string name="discountBulkShortDesc">-%1$s\nbuying %2$s</string>
-    <string name="discountBulkDesc">Buy %1$s of the same product and get a %2$s off on them</string>
+    <string name="discountBulkDesc">Buy %1$s or more of the same product and get a %2$s off on them</string>
     <string name="productsMenuCartTitle">Cart</string>
     <string name="productsListMessageEmpty">There are no products to show</string>
     <string name="productsListMessageError">There was an error fetching products</string>
     <string name="productsAddToCartMessageError">There was an error adding the product to the cart</string>
+
+    <!--Checkout-->
+    <string name="checkoutTitle">Checkout</string>
+    <string name="checkoutCtaPay">Continue with payment</string>
+    <string name="checkoutSubtotal">Subtotal</string>
+    <string name="checkoutTotal">Total</string>
+    <string name="checkoutAppliedPromos">Applied promotions:</string>
+    <string name="checkoutPromoFree">Free promo: %1$s free buying %2$s</string>
+    <string name="checkoutPromoBulk">Discount promo: %1$s buying %2$s or more</string>
+
 </resources>

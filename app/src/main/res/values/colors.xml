@@ -5,6 +5,7 @@
     <color name="colorBrand">#6D32FA</color>
     <color name="colorBlack">#000</color>
     <color name="colorWhite">#FFF</color>
+    <color name="colorGrey">#888</color>
     <color name="colorGreyLight">#F8F8F8</color>
 
     <!--App colors-->

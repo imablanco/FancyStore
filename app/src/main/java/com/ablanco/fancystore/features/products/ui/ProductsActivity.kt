@@ -1,5 +1,6 @@
 package com.ablanco.fancystore.features.products.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.lifecycle.Observer
@@ -9,9 +10,11 @@ import com.ablanco.fancystore.base.ui.BaseActivity
 import com.ablanco.fancystore.base.ui.ErrorDisplayObserver
 import com.ablanco.fancystore.databinding.ActivityProductsBinding
 import com.ablanco.fancystore.databinding.ViewCartMenuIconBinding
+import com.ablanco.fancystore.features.checkout.ui.CheckoutActivity
 import com.ablanco.fancystore.features.products.presentation.ProductsIntent
 import com.ablanco.fancystore.features.products.presentation.ProductsViewAction
 import com.ablanco.fancystore.features.products.presentation.ProductsViewModel
+import com.ablanco.fancystore.utils.ui.isInPortrait
 import com.ablanco.fancystore.utils.ui.switchVisibility
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -38,13 +41,11 @@ class ProductsActivity : BaseActivity<ActivityProductsBinding>() {
         val adapter = ProductsAdapter {
             viewModel.sendIntent(ProductsIntent.AddProductToCart(it))
         }
-        binding.rvProducts.layoutManager = GridLayoutManager(this, 2)
+        val gridColumns = if (isInPortrait) 2 else 3
+        binding.rvProducts.layoutManager = GridLayoutManager(this, gridColumns)
         binding.rvProducts.adapter = adapter
-        binding.toolbar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.actionCart -> viewModel.sendIntent(ProductsIntent.NavigateToCart)
-            }
-            true
+        cartMenuBinding?.root?.setOnClickListener {
+            viewModel.sendIntent(ProductsIntent.CartClicked)
         }
 
         viewModel.viewState.observe(this, Observer { state ->
@@ -63,6 +64,8 @@ class ProductsActivity : BaseActivity<ActivityProductsBinding>() {
                         R.string.productsListMessageEmpty,
                         Snackbar.LENGTH_SHORT
                     ).show()
+                is ProductsViewAction.NavigateToCart ->
+                    startActivity(Intent(this, CheckoutActivity::class.java))
             }
         })
 

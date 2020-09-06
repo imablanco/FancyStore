@@ -35,7 +35,7 @@ sealed class ProductsIntent : Intent {
     * in the View, but I prefer to drive all user interactions through the VM to respect the
     * data flow. Also maybe in a future this action may involve some kind of business logic (i.e
     * sending some data to analytics) so it would require to move it here*/
-    object NavigateToCart : ProductsIntent()
+    object CartClicked : ProductsIntent()
 }
 
 data class ProductsViewState(
@@ -78,7 +78,7 @@ class ProductsViewModel(
     override fun handleIntent(intent: Intent) {
         when (intent) {
             is ProductsIntent.AddProductToCart -> addProductToCart(intent.product.id)
-            is ProductsIntent.NavigateToCart -> dispatchAction(ProductsViewAction.NavigateToCart)
+            is ProductsIntent.CartClicked -> dispatchAction(ProductsViewAction.NavigateToCart)
         }
     }
 
