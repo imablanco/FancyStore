@@ -23,6 +23,7 @@ import org.junit.Test
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
+import kotlin.concurrent.thread
 
 /**
  * Created by Álvaro Blanco Cabrero on 07/09/2020.
@@ -45,7 +46,9 @@ class ProductsActivityTests : BaseUiTest() {
             )
         }
 
-        ProductsPageObject().launch().checkCartBadgeIsGone()
+        ProductsPageObject().launch()
+            .checkCartBadgeIsGone()
+            .apply { scenario.onActivity { thread { compareScreenshot(it) } } }
     }
 
     @Test
@@ -63,7 +66,9 @@ class ProductsActivityTests : BaseUiTest() {
             )
         }
 
-        ProductsPageObject().launch().checkCartBadgeIsVisible()
+        ProductsPageObject().launch()
+            .checkCartBadgeIsVisible()
+            .apply { scenario.onActivity { thread { compareScreenshot(it) } } }
     }
 
     @Test
@@ -83,6 +88,7 @@ class ProductsActivityTests : BaseUiTest() {
         ProductsPageObject().launch()
             .checkSnackBarIsDisplayed(R.string.productsListMessageEmpty)
             .checkListIsEmpty()
+            .apply { scenario.onActivity { thread { compareScreenshot(it) } } }
     }
 
     @Test
@@ -99,7 +105,9 @@ class ProductsActivityTests : BaseUiTest() {
             )
         }
 
-        ProductsPageObject().launch().checkListIsNotEmpty()
+        ProductsPageObject().launch()
+            .checkListIsNotEmpty()
+            .apply { scenario.onActivity { thread { compareScreenshot(it) } } }
     }
 
     @Test
@@ -118,6 +126,7 @@ class ProductsActivityTests : BaseUiTest() {
         ProductsPageObject().launch()
             .clickAddToProduct()
             .checkSnackBarIsDisplayed(R.string.productsAddToCartMessageError)
+            .apply { scenario.onActivity { thread { compareScreenshot(it) } } }
     }
 
     @Test
@@ -129,6 +138,7 @@ class ProductsActivityTests : BaseUiTest() {
         ProductsPageObject().launch()
             .clickCart()
             .checkNavigatedToCheckout()
+            .apply { scenario.onActivity { thread { compareScreenshot(it) } } }
     }
 
     private fun getViewModel(

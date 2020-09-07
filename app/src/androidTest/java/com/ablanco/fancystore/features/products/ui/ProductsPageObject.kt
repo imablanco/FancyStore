@@ -1,5 +1,6 @@
 package com.ablanco.fancystore.features.products.ui
 
+import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -18,8 +19,11 @@ import org.hamcrest.CoreMatchers.not
  */
 class ProductsPageObject : PageObject {
 
+    private lateinit var _scenario: ActivityScenario<ProductsActivity>
+    val scenario: ActivityScenario<ProductsActivity> get() = _scenario
+
     fun launch() = apply {
-        launch<ProductsActivity>()
+        _scenario = launch<ProductsActivity>()
         intending(withComponent<CheckoutActivity>()).respondWithOk()
     }
 
