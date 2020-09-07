@@ -15,9 +15,14 @@ sealed class DiscountData {
     abstract val items: List<String>
 }
 
-data class ItemsPromoDiscountData(
+data class FreeItemDiscountData(
     @SerializedName("items") override val items: List<String>,
     @SerializedName("minAmount") val minAmount: Int,
-    @SerializedName("amountFactor") val amountFactor: Double,
+    @SerializedName("freeAmount") val freeAmount: Int
+) : DiscountData()
+
+data class BulkDiscountData(
+    @SerializedName("items") override val items: List<String>,
+    @SerializedName("minAmount") val minAmount: Int,
     @SerializedName("priceFactor") val priceFactor: Double
 ) : DiscountData()

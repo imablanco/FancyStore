@@ -1,7 +1,8 @@
 package com.ablanco.fancystore.data.network
 
+import com.ablanco.fancystore.data.models.BulkDiscountData
 import com.ablanco.fancystore.data.models.DiscountData
-import com.ablanco.fancystore.data.models.ItemsPromoDiscountData
+import com.ablanco.fancystore.data.models.FreeItemDiscountData
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
@@ -21,7 +22,8 @@ class ProductDiscountTypeAdapter : JsonDeserializer<DiscountData> {
     /*These is the list of deserializers for the known types.
     * Handling a new discount is as easy as adding a new deserializers to the list*/
     private val deserializers = listOf(
-        createDiscountDeserializer<ItemsPromoDiscountData>(DiscountType.Promotion)
+        createDiscountDeserializer<FreeItemDiscountData>(DiscountType.Free),
+        createDiscountDeserializer<BulkDiscountData>(DiscountType.Bulk)
     )
 
     override fun deserialize(
@@ -36,7 +38,8 @@ class ProductDiscountTypeAdapter : JsonDeserializer<DiscountData> {
 }
 
 enum class DiscountType(val serializedName: String) {
-    Promotion("promotion")
+    Free("freeItem"),
+    Bulk("bulk")
 }
 
 /**

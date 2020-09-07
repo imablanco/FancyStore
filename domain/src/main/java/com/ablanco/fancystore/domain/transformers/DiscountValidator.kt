@@ -1,8 +1,9 @@
 package com.ablanco.fancystore.domain.transformers
 
+import com.ablanco.fancystore.domain.models.BulkDiscount
 import com.ablanco.fancystore.domain.models.CartProduct
 import com.ablanco.fancystore.domain.models.Discount
-import com.ablanco.fancystore.domain.models.ItemsPromoDiscount
+import com.ablanco.fancystore.domain.models.FreeItemDiscount
 
 /**
  * Created by Álvaro Blanco Cabrero on 06/09/2020.
@@ -39,9 +40,22 @@ abstract class BaseDiscountValidator<T : Discount> : DiscountValidator<T> {
         ?: throw IllegalArgumentException("Invalid type ${discount.javaClass.name} passed to this validator")
 }
 
-class ItemsPromoDiscountValidator : BaseDiscountValidator<ItemsPromoDiscount>() {
+/**
+ * [DiscountValidator] implementation for [FreeItemDiscount] type
+ */
+class FreeItemDiscountValidator : BaseDiscountValidator<FreeItemDiscount>() {
 
     /*Only valid if product group size is equal or higher that the min amount required*/
-    override fun apply(products: List<CartProduct>, discount: ItemsPromoDiscount): Boolean =
+    override fun apply(products: List<CartProduct>, discount: FreeItemDiscount): Boolean =
+        products.size >= discount.minAmount
+}
+
+/**
+ * [DiscountValidator] implementation for [BulkDiscount] type
+ */
+class BulkDiscountValidator : BaseDiscountValidator<BulkDiscount>() {
+
+    /*Only valid if product group size is equal or higher that the min amount required*/
+    override fun apply(products: List<CartProduct>, discount: BulkDiscount): Boolean =
         products.size >= discount.minAmount
 }

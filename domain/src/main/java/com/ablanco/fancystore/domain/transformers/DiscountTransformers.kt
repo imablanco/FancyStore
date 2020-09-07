@@ -1,8 +1,9 @@
 package com.ablanco.fancystore.domain.transformers
 
+import com.ablanco.fancystore.domain.models.BulkDiscount
 import com.ablanco.fancystore.domain.models.CartProduct
 import com.ablanco.fancystore.domain.models.Discount
-import com.ablanco.fancystore.domain.models.ItemsPromoDiscount
+import com.ablanco.fancystore.domain.models.FreeItemDiscount
 import kotlin.reflect.KClass
 
 /**
@@ -28,7 +29,8 @@ interface DiscountTransformers {
 class DiscountTransformersImpl : DiscountTransformers {
 
     private val transformers: Map<KClass<out Discount>, BaseDiscountTransformer<*>> = mapOf(
-        ItemsPromoDiscount::class to ItemsPromoDiscountTransformer()
+        FreeItemDiscount::class to FreeItemDiscountTransformer(),
+        BulkDiscount::class to BulkDiscountTransformer()
     )
 
     override fun applyDiscounts(

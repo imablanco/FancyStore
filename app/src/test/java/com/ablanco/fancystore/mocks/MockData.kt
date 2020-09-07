@@ -2,10 +2,7 @@ package com.ablanco.fancystore.mocks
 
 import com.ablanco.fancystore.data.models.CartMapper
 import com.ablanco.fancystore.data.models.toCartProduct
-import com.ablanco.fancystore.domain.models.Cart
-import com.ablanco.fancystore.domain.models.Discount
-import com.ablanco.fancystore.domain.models.ItemsPromoDiscount
-import com.ablanco.fancystore.domain.models.Product
+import com.ablanco.fancystore.domain.models.*
 import com.ablanco.fancystore.domain.transformers.DiscountTransformersImpl
 
 /**
@@ -33,16 +30,14 @@ object MockData {
     )
 
     val mockDiscounts: List<Discount> = listOf(
-        ItemsPromoDiscount(
+        FreeItemDiscount(
             items = listOf("VOUCHER"),
             minAmount = 2,
-            amountFactor = 0.5,
-            priceFactor = 1.0
+            freeAmount = 1
         ),
-        ItemsPromoDiscount(
+        BulkDiscount(
             items = listOf("TSHIRT"),
             minAmount = 3,
-            amountFactor = 1.0,
             priceFactor = 0.05
         )
     )

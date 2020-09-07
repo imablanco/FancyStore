@@ -19,10 +19,14 @@ fun ProductData.toDomain(): Product =
     )
 
 fun DiscountData.toDomain(): Discount = when (this) {
-    is ItemsPromoDiscountData -> ItemsPromoDiscount(
+    is FreeItemDiscountData -> FreeItemDiscount(
         items = items,
         minAmount = minAmount,
-        amountFactor = amountFactor,
+        freeAmount = freeAmount
+    )
+    is BulkDiscountData -> BulkDiscount(
+        items = items,
+        minAmount = minAmount,
         priceFactor = priceFactor
     )
 }

@@ -3,11 +3,7 @@ package com.ablanco.fancystore.utils.presentation
 import androidx.annotation.DrawableRes
 import com.ablanco.fancystore.R
 import com.ablanco.fancystore.base.presentation.StringsProvider
-import com.ablanco.fancystore.domain.models.CartProduct
-import com.ablanco.fancystore.domain.models.Discount
-import com.ablanco.fancystore.domain.models.ItemsPromoDiscount
-import com.ablanco.fancystore.domain.models.Product
-import kotlin.math.floor
+import com.ablanco.fancystore.domain.models.*
 
 /**
  * Created by Álvaro Blanco Cabrero on 06/09/2020.
@@ -37,33 +33,27 @@ private val String.iconResId: Int
     }
 
 fun Discount.toPresentation(stringsProvider: StringsProvider): DiscountVM = when (this) {
-    is ItemsPromoDiscount -> {
-        /*Although from a data model perspective MxN and x% off buying N+ are the same,
-        * conceptually they are different so we have to figure out what logical type we have*/
-        val isFreeItemDiscount = priceFactor == 1.0
-        val freeAmount = floor(minAmount * amountFactor).toInt()
+    is FreeItemDiscount -> DiscountVM(
+        displayName = "$minAmount x ${minAmount - freeAmount}",
+        description = stringsProvider(
+            R.string.discountFreeDesc,
+            minAmount.toString(),
+            freeAmount.toString()
+        )
+    )
+    is BulkDiscount -> {
         val discountPercentage = "${(priceFactor * 100).formatDecimal(minimumDigits = 0)}%"
-        val displayName =
-            if (isFreeItemDiscount) "$minAmount x $freeAmount"
-            else stringsProvider(
+        DiscountVM(
+            displayName = stringsProvider(
                 R.string.discountBulkShortDesc,
                 discountPercentage,
                 minAmount.toString()
-            )
-        val description =
-            if (isFreeItemDiscount) stringsProvider(
-                R.string.discountFreeDesc,
-                minAmount.toString(),
-                freeAmount.toString()
-            )
-            else stringsProvider(
+            ),
+            description = stringsProvider(
                 R.string.discountBulkDesc,
                 minAmount.toString(),
                 discountPercentage
             )
-        DiscountVM(
-            displayName = displayName,
-            description = description
         )
     }
 }
