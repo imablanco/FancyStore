@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/spacingMini">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivProductIcon"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/productImageHeight"
+            android:contentDescription="@null"
+            android:padding="@dimen/spacingNormal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_mug" />
+
+        <FrameLayout
+            android:id="@+id/layoutDiscount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:translationX="10dp"
+            android:translationY="-10dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible">
+
+            <ImageView
+                android:layout_width="@dimen/productPromotionBadgeSize"
+                android:layout_height="@dimen/productPromotionBadgeSize"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_promotion_badge"
+                app:tint="@color/colorAccent" />
+
+            <TextView
+                android:id="@+id/tvDiscountShortDesc"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                tools:text="10% off" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tvProductName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacingNormal"
+            android:layout_marginTop="@dimen/spacingNormal"
+            android:lines="1"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivProductIcon"
+            tools:text="Shirt" />
+
+        <TextView
+            android:id="@+id/tvProductPrice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacingNormal"
+            android:layout_marginTop="@dimen/spacingNormal"
+            android:layout_marginBottom="@dimen/spacingNormal"
+            android:lines="1"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ivAddToBag"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvProductName"
+            tools:text="19.99 €" />
+
+        <ImageView
+            android:id="@+id/ivAddToBag"
+            android:layout_width="@dimen/clickableIconSize"
+            android:layout_height="@dimen/clickableIconSize"
+            android:layout_marginEnd="@dimen/spacingMini"
+            android:layout_marginBottom="@dimen/spacingMini"
+            android:background="?selectableItemBackgroundBorderless"
+            android:contentDescription="@null"
+            android:padding="@dimen/clickableIconPadding"
+            android:src="@drawable/ic_bag"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="@color/colorAccent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tvDiscountDesc"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:padding="@dimen/spacingMini"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        android:textColor="@color/colorWhite"
+        android:visibility="invisible"
+        tools:text="10% off" />
+
+</androidx.cardview.widget.CardView>

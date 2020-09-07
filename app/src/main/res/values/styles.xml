@@ -1,10 +1,32 @@
 <resources>
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlHighlight">@color/colorControlHighLight</item>
+        <item name="android:windowBackground">@color/colorBackground</item>
+        <item name="android:textColorPrimary">@color/colorTextPrimary</item>
+        <item name="cardViewStyle">@style/CardViewStyle</item>
+        <item name="toolbarStyle">@style/ToolbarStyle</item>
+        <item name="materialButtonStyle">@style/ButtonStyle</item>
     </style>
 
+    <style name="CardViewStyle" parent="CardView">
+        <item name="cardBackgroundColor">@color/colorCardView</item>
+        <item name="cardCornerRadius">@dimen/cornerRadiusNormal</item>
+        <item name="cardElevation">@dimen/elevationNormal</item>
+    </style>
+
+    <style name="ToolbarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="titleTextColor">@color/colorWhite</item>
+        <item name="android:background">?colorPrimary</item>
+    </style>
+
+    <style name="ButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/color_button_bg</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:minHeight">@dimen/buttonMinHeight</item>
+    </style>
 </resources>

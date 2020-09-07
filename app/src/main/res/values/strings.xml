@@ -1,3 +1,28 @@
 <resources>
     <string name="app_name">FancyStore</string>
+
+    <!--Common-->
+    <string name="errorActionRetry">Retry</string>
+    <string name="discountFreeDesc">Buy %1$s of the same product and get %2$s for free!</string>
+    <string name="discountBulkShortDesc">-%1$s\nbuying %2$s</string>
+    <string name="discountBulkDesc">Buy %1$s or more of the same product and get a %2$s off on them</string>
+
+    <!--Products-->
+    <string name="productsTitle">Products</string>
+    <string name="productsMenuCartTitle">Cart</string>
+    <string name="productsListMessageEmpty">There are no products to show</string>
+    <string name="productsListMessageError">There was an error fetching products</string>
+    <string name="productsAddToCartMessageError">There was an error adding the product to the cart</string>
+
+    <!--Checkout-->
+    <string name="checkoutTitle">Checkout</string>
+    <string name="checkoutCtaPay">Continue with payment</string>
+    <string name="checkoutSubtotal">Subtotal</string>
+    <string name="checkoutTotal">Total</string>
+    <string name="checkoutAppliedPromos">Applied promotions:</string>
+    <string name="checkoutError">There was an error fetching the cart</string>
+    <string name="checkoutPaymentError">There was an error with the payment</string>
+    <string name="checkoutPaymentSuccess">Payment completed successfully</string>
+    <string name="checkoutEmptyState">There is no products in the cart yet</string>
+
 </resources>

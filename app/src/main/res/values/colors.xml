@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+
+    <!--Base colors-->
+    <color name="colorBrand">#6D32FA</color>
+    <color name="colorBlack">#000</color>
+    <color name="colorWhite">#FFF</color>
+    <color name="colorGrey">#888</color>
+    <color name="colorGreyLight">#F8F8F8</color>
+
+    <!--App colors-->
+    <color name="colorPrimary">@color/colorBrand</color>
+    <color name="colorPrimaryDark">@color/colorBrand</color>
+    <color name="colorAccent">@color/colorBrand</color>
+    <color name="colorTextPrimary">@color/colorBlack</color>
+    <color name="colorCardView">@color/colorWhite</color>
+    <color name="colorBackground">#F8F8F8</color>
+    <color name="colorControlHighLight">#426D32FA</color>
 </resources>

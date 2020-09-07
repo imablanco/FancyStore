@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Common-->
+    <dimen name="spacingNormal">16dp</dimen>
+    <dimen name="spacingMini">8dp</dimen>
+    <dimen name="cornerRadiusNormal">8dp</dimen>
+    <dimen name="elevationNormal">2dp</dimen>
+    <dimen name="clickableIconSize">48dp</dimen>
+    <dimen name="clickableIconPadding">12dp</dimen>
+    <dimen name="buttonMinHeight">56dp</dimen>
+
+    <!--Features-->
+    <dimen name="productImageHeight">120dp</dimen>
+    <dimen name="productPromotionBadgeSize">80dp</dimen>
+    <dimen name="productsCartMenuBadgeSize">22dp</dimen>
+
+    <dimen name="checkoutListBottomPadding">72dp</dimen>
+    <dimen name="checkoutProductImageSize">80dp</dimen>
+
+</resources>
