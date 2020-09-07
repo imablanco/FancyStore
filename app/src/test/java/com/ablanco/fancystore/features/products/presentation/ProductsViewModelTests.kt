@@ -8,7 +8,7 @@ import com.ablanco.fancystore.domain.base.Left
 import com.ablanco.fancystore.domain.base.Right
 import com.ablanco.fancystore.domain.models.Discount
 import com.ablanco.fancystore.domain.models.Product
-import com.ablanco.fancystore.mocks.MockData
+import com.ablanco.fancystore.base.MockData
 import com.ablanco.fancystore.presentation.PresentationError
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.doReturn

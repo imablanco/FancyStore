@@ -15,6 +15,7 @@ ext{
     jUnitVersion = '4.13'
     espressoVersion = '3.3.0'
     espressoIntentsVersion = '3.3.0'
+    espressoContribVersion = '3.0.2'
     mockitoKotlinVersion = '2.2.0'
     archTestingVersion = '2.1.0'
     androidJUnitVersion = '1.1.2'
