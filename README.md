@@ -43,16 +43,16 @@ Although I played around with some testing frameworks like Spek I feel more conf
 
 One of the most important parts of the app is how discounts are computed. (Although in a real app this discounts should be calculated in back).  
 
-Discounts are modeled trough `Discount` sealed class that currently has two inheritors (one by type of known discount): 
-*FreeItemDiscount
-*BulkDiscount
+Discounts are modeled trough `Discount` sealed class that currently has two inheritors (one by type of known discount)  
+* FreeItemDiscount
+* BulkDiscount
 
 `FreeItemDiscount` represents MxN discounts where buying M products the user gets N for free.
 `BulkDiscount` represents X% off discounts where buying N or more products of a type applies X% off on all of them.
 
 To provide an scalable way of creating and applying different discounts I constructed some classes that work together:
 
-##### DiscountValidator
+#### DiscountValidator
 
 Its generic on `Discount` and has the responsability of validating if the given `Discount` is valid for the received products.
 
