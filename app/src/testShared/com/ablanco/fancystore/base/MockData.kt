@@ -1,4 +1,4 @@
-package com.ablanco.fancystore.mocks
+package com.ablanco.fancystore.base
 
 import com.ablanco.fancystore.data.models.CartMapper
 import com.ablanco.fancystore.data.models.toCartProduct

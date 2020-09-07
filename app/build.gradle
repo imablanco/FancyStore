@@ -31,6 +31,16 @@ android {
         }
     }
 
+    sourceSets {
+        String sharedTestDir = "$projectDir/src/testShared"
+        test {
+            java.srcDirs += sharedTestDir
+        }
+        androidTest {
+            java.srcDirs += sharedTestDir
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -38,6 +48,11 @@ android {
 
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    packagingOptions {
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.1'
     }
 }
 
@@ -62,8 +77,13 @@ dependencies {
     testImplementation "androidx.arch.core:core-testing:$archTestingVersion"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
+    androidTestImplementation "androidx.arch.core:core-testing:$archTestingVersion"
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
     androidTestImplementation "androidx.test.ext:junit:$androidJUnitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$espressoIntentsVersion"
+    androidTestImplementation("org.koin:koin-test:$koinVersion") { exclude group: 'org.mockito' }
+    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$espressoContribVersion"
 
 }
 
