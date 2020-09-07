@@ -38,3 +38,22 @@ Also build times are something to keep in mind and in the last releases they als
 
 I always do testing (Unit and instrumented) by providing test fakes or mocks for repository or use cases assuming that most of the logic work load is done by the ViewModel.  Also by ensuring fakes in UI testing we can get rid of `IdlingResource`s by making all the data flow sync.
 Although I played around with some testing frameworks like Spek I feel more confortable going with plain assertions, only using `Mockito` to mock use cases responses. 
+
+### Domain business rules
+
+One of the most important parts of the app is how discounts are computed. (Although in a real app this discounts should be calculated in back).  
+
+Discounts are modeled trough `Discount` sealed class that currently has two inheritors (one by type of known discount): 
+*FreeItemDiscount
+*BulkDiscount
+
+`FreeItemDiscount` represents MxN discounts where buying M products the user gets N for free.
+`BulkDiscount` represents X% off discounts where buying N or more products of a type applies X% off on all of them.
+
+To provide an scalable way of creating and applying different discounts I constructed some classes that work together:
+
+##### DiscountValidator
+
+Its generic on `Discount` and has the responsability of validating if the given `Discount` is valid for the received products.
+
+
