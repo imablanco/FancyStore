@@ -40,7 +40,7 @@ class ProductsViewModelTests : BaseViewModelTest() {
 
         /*Then*/
         Assert.assertFalse(testObserver.lastValue.showCartItemCount)
-        Assert.assertEquals(testObserver.lastValue.cartItemCount, "0")
+        Assert.assertEquals("0", testObserver.lastValue.cartItemCount)
     }
 
     @Test
