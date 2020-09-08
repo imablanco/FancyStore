@@ -33,4 +33,4 @@ class ErrorDisplayDelegate(private val getDisplay: () -> View) : ErrorDisplay {
 }
 
 /*Handy function to create and [Observer] that forwards errors to [ErrorDisplay]*/
-fun ErrorDisplay.ErrorDisplayObserver() = Observer<PresentationError>(::display)
+fun ErrorDisplay.ErrorDisplayObserver(): Observer<PresentationError> = Observer(::display)
