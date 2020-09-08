@@ -45,12 +45,14 @@ class ProductsAdapter(
 
             binding.layoutDiscount.setOnClickListener {
                 if (adapterPosition != RecyclerView.NO_POSITION) {
+                    //noinspection WrongConstant
                     binding.tvDiscountDesc.showReveal(Top or Right)
                 }
             }
 
             binding.tvDiscountDesc.setOnClickListener {
                 if (adapterPosition != RecyclerView.NO_POSITION) {
+                    //noinspection WrongConstant
                     binding.tvDiscountDesc.hideReveal(Top or Right)
                 }
             }
